@@ -4,12 +4,21 @@ import {
   graphql,
 } from 'react-apollo';
 
-const ChannelsList = () => (
-  <ul className="Item-list">
-    <li>Channel 1</li>
-    <li>Channel 2</li>
-  </ul>
-);
+const ChannelsList = ({ data: { error, loading, channels } }) => {
+  if (loading) return (<p>Loading...</p>);
+  if (error) return (<p>Error: {error.message}</p>);
+  return (
+    <ul className="Item-list">
+      {
+        channels.map(({ id, name }) =>
+          <li key={id}>
+            {name}
+          </li>
+        )
+      }
+    </ul>
+  );
+}
 
 const channelsListQuery = gql`
   query ChannelsListQuery {
@@ -19,5 +28,4 @@ const channelsListQuery = gql`
     }
   }
 `
-const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList);
-export default ChannelsListWithData;
+export default graphql(channelsListQuery)(ChannelsList);
