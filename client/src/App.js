@@ -13,15 +13,17 @@ const client = new ApolloClient();
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Apollo</h2>
+      <ApolloProvider client={client}>
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to Apollo</h2>
+          </div>
+          <p className="App-intro">
+            <ChannelList />
+          </p>
         </div>
-        <p className="App-intro">
-          <ChannelList />
-        </p>
-      </div>
+      </ApolloProvider>
     );
   }
 }
