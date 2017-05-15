@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   ApolloClient,
   ApolloProvider,
+  createNetworkInterface,
 } from 'react-apollo';
 import {
   makeExecutableSchema,
@@ -14,11 +15,10 @@ import './App.css';
 import ChannelList from './components/channelList';
 
 const schema = makeExecutableSchema({ typeDefs });
-addMockFunctionsToSchema({ schema });
-const mockNetworkInterface = mockNetworkInterfaceWithSchema({ schema });
-const client = new ApolloClient({
-  networkInterface: mockNetworkInterface,
+const networkInterface = createNetworkInterface({
+  uri: 'http://localhost:4000/graphql',
 });
+const client = new ApolloClient({ networkInterface });
 
 class App extends Component {
   render() {
