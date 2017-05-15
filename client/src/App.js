@@ -8,11 +8,10 @@ import {
   addMockFunctionsToSchema,
 } from 'graphql-tools';
 import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils';
-import { typeDefs } from './schema';
 
-import logo from './logo.svg';
+import { typeDefs } from './schema';
 import './App.css';
-import ChannelList from './channelList';
+import ChannelList from './components/channelList';
 
 const schema = makeExecutableSchema({ typeDefs });
 addMockFunctionsToSchema({ schema });
@@ -26,13 +25,9 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to Apollo</h2>
-          </div>
-          <p className="App-intro">
+          <div className="navbar">
             <ChannelList />
-          </p>
+          </div>
         </div>
       </ApolloProvider>
     );
