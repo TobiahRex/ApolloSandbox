@@ -13,7 +13,7 @@ const ChannelsList = ({ data: { error, loading, channels } }) => {
       <AddChannel />
       {
         channels.map(({ id, name }) =>
-          <div key={id} className="channel">
+          <div key={id} className={`channel${id < 0 ? ' optimistic' : ''}`}>
             {name}
           </div>
         )
