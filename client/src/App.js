@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import ChannelList from './channelList';
 
+import {
+  ApolloClient,
+  ApolloProvider,
+} from 'react-apollo';
+
+const client = new ApolloClient();
+
 class App extends Component {
   render() {
     return (
