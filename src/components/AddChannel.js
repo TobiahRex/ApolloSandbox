@@ -1,10 +1,19 @@
 import React from 'react';
+import {
+  gql,
+  graphql,
+} from 'react-apollo';
 
-const AddChannel = () => {
+const AddChannel = ({ mutate }) => {
   const handleKeyUp = (e) => {
     if (e.keyCode === 13) {
-      console.log(e.target.value);
-      e.target.value = '';
+      e.persist(); // see below
+      mutate({
+        variables: {
+          name: e.target.value,
+        },
+      })
+      .then(res => (e.target.value = ''));
     }
   };
 
@@ -16,5 +25,18 @@ const AddChannel = () => {
     />
   )
 }
+const addChannelMutation = gql`
+  mutation addChannel($name: String!) {
+    addChannel(name: $name) {
+      id
+      name
+    }
+  }
+`;
+export default graphql(addChannelMutation)(AddChannel);
 
-export default AddChannel;
+/*
+e.persit():
+  From react docs: https://facebook.github.io/react/docs/events.html
+  > If you want to access the event properties in an asynchronous way, you should call event.persist() on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+*/
