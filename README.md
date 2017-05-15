@@ -1,4 +1,4 @@
-# graphql-tutorial
+# apollo-graphql-tutorial
 Full-stack GraphQL tutorials with React, Redux and Apollo
 
 [Part 1: the frontend](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b)
@@ -28,5 +28,3 @@ More ideas for later (building on each other)...
 - CRUD mutations in GraphQL: create
 - CRUD mutations in GraphQL: update
 - CRUD mutations in GraphQL: delete
-
-
