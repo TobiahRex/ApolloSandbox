@@ -13,7 +13,15 @@ const AddChannel = ({ mutate }) => {
         variables: {
           name: e.target.value,
         },
-        refetchQueries: [{ query: channelsListQuery }],
+        // refetchQueries: [{ query: channelsListQuery }],
+        update: (store, { data: { addChannel } }) => {
+          // Read the data from the cache for this query
+          const data = store.readQuery({ query: channelsListQuery });
+          // Add our channel, from the mutation, to the channels array.
+          data.channels.push(addChannel);
+          // Write the data back to the cache.
+          store.writeQuery({ query: channelsListQuery, data });
+        },
       })
       .then(res => (e.target.value = ''));
     }
