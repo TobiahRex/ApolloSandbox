@@ -3,6 +3,7 @@ import {
   gql,
   graphql,
 } from 'react-apollo';
+import { channelsListQuery } from './ChannelsList';
 
 const AddChannel = ({ mutate }) => {
   const handleKeyUp = (e) => {
