@@ -12,6 +12,7 @@ const AddChannel = ({ mutate }) => {
         variables: {
           name: e.target.value,
         },
+        refetchQueries: [{ query: channelsListQuery }],
       })
       .then(res => (e.target.value = ''));
     }
