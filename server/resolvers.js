@@ -5,12 +5,20 @@ const channels = [{
   id: 2,
   name: 'baseball',
 }];
+let nextId = 3;
 const resolvers = {
   Query: {
     channels: () => {
       return channels;
     },
   },
+  Mutation: {
+    addChannel: (_, { name }) => {
+      const newChannel = { id: nextId++, name };
+      channels.push(newChannel);
+      return newChannel;
+    }
+  }
 };
 
 export default resolvers;
