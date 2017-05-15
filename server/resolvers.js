@@ -5,11 +5,12 @@ const channels = [{
   id: 2,
   name: 'baseball',
 }];
-export const resolvers = {
+const resolvers = {
   Query: {
     channels: () => {
       return channels;
     },
   },
 };
-export default channels;
+
+export default resolvers;
